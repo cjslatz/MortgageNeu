@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { TextField, Button, Table, TableBody, TableRow, TableCell, TableHead, Paper } from '@mui/material';
 
 function LoanCalculator() {
     const [loanAmount, setLoanAmount] = useState('');
@@ -31,35 +32,40 @@ function LoanCalculator() {
         <div>
             <h2>Loan Amortization Calculator</h2>
             <div>
-                <label>Total Loan Amount:</label>
-                <input type="number" value={loanAmount} onChange={(e) => setLoanAmount(e.target.value)} />
+                <TextField label="Total Loan Amount" type="number" value={loanAmount} onChange={(e) => setLoanAmount(e.target.value)} />
             </div>
             <div>
-                <label>Loan Length in Years:</label>
-                <input type="number" value={loanLength} onChange={(e) => setLoanLength(e.target.value)} />
+                <TextField label="Loan Length in Years" type="number" value={loanLength} onChange={(e) => setLoanLength(e.target.value)} />
             </div>
             <div>
-                <label>Interest Rate:</label>
-                <input type="number" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} />
+                <TextField label="Interest Rate" type="number" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} />
             </div>
-            <button onClick={calculateAmortization}>Calculate</button>
+            <Button variant="contained" onClick={calculateAmortization}>Calculate</Button>
 
-            {/* Display amortization data here */}
-            {/* You can use a table or any other preferred layout */}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Month</th>
-                        <th>Principal Remaining</th>
-                        <th>Interest Paid</th>
-                        <th>Principal Paid</th>
-                        <th>Total Monthly Payment</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {/* Map through amortizationData and render rows */}
-                </tbody>
-            </table>
+            <Paper>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Month</TableCell>
+                            <TableCell>Principal Remaining</TableCell>
+                            <TableCell>Interest Paid</TableCell>
+                            <TableCell>Principal Paid</TableCell>
+                            <TableCell>Total Monthly Payment</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {amortizationData.map(record => (
+                            <TableRow key={record.month}>
+                                <TableCell>{record.month}</TableCell>
+                                <TableCell>{record.remainingBalance}</TableCell>
+                                <TableCell>{record.interestPaid}</TableCell>
+                                <TableCell>{record.principalPaid}</TableCell>
+                                <TableCell>{record.totalMonthlyPayment}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </Paper>
         </div>
     );
 }

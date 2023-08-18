@@ -6,7 +6,7 @@ import LoanCalculator from "./components/LoanCalculator";
 const AppRoutes = [
   {
     index: true,
-    element: <Home />
+        element: <LoanCalculator />
   },
   {
     path: '/counter',

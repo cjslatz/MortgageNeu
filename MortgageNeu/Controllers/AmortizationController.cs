@@ -36,10 +36,10 @@ namespace MortgageNeu.Controllers
                 AmortizationRecord record = new AmortizationRecord
                 {
                     Month = month,
-                    RemainingBalance = remainingBalance,
-                    InterestPaid = interestPayment,
-                    PrincipalPaid = principalPayment,
-                    TotalMonthlyPayment = interestPayment + principalPayment
+                    RemainingBalance = Math.Round(remainingBalance,2),
+                    InterestPaid = Math.Round(interestPayment, 2),
+                    PrincipalPaid = Math.Round(principalPayment, 2),
+                    TotalMonthlyPayment = Math.Round(interestPayment + principalPayment, 2)
                 };
 
                 amortizationSchedule.Add(record);
