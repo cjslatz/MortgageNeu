@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { TextField, Button, Table, TableBody, TableRow, TableCell, TableHead, Paper } from '@mui/material';
+import { TextField, Button, Paper } from '@mui/material';
+import { DataGrid } from '@mui/x-data-grid';
 
 function LoanCalculator() {
     const [loanAmount, setLoanAmount] = useState('');
@@ -28,6 +29,20 @@ function LoanCalculator() {
         }
     };
 
+    const columns = [
+        { field: 'month', headerName: 'Month', width: 100 },
+        { field: 'remainingBalance', headerName: 'Principal Remaining', width: 200 },
+        { field: 'interestPaid', headerName: 'Interest Paid', width: 150 },
+        { field: 'principalPaid', headerName: 'Principal Paid', width: 150 },
+        { field: 'totalMonthlyPayment', headerName: 'Total Monthly Payment', width: 200 },
+    ];
+
+    const amortizationDataWithKeys = amortizationData.map(record => ({
+        ...record,
+        id: record.month, // Use 'month' as the unique key
+    }));
+
+
     return (
         <div>
             <h2>Loan Amortization Calculator</h2>
@@ -42,30 +57,9 @@ function LoanCalculator() {
             </div>
             <Button variant="contained" onClick={calculateAmortization}>Calculate</Button>
 
-            <Paper>
-                <Table>
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Month</TableCell>
-                            <TableCell>Principal Remaining</TableCell>
-                            <TableCell>Interest Paid</TableCell>
-                            <TableCell>Principal Paid</TableCell>
-                            <TableCell>Total Monthly Payment</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {amortizationData.map(record => (
-                            <TableRow key={record.month}>
-                                <TableCell>{record.month}</TableCell>
-                                <TableCell>{record.remainingBalance}</TableCell>
-                                <TableCell>{record.interestPaid}</TableCell>
-                                <TableCell>{record.principalPaid}</TableCell>
-                                <TableCell>{record.totalMonthlyPayment}</TableCell>
-                            </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Paper>
+            <div style={{ height: 400, width: '100%' }}>
+                <DataGrid rows={amortizationDataWithKeys} columns={columns} pageSize={10} />
+            </div>
         </div>
     );
 }
