@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Paper } from '@mui/material';
+import { TextField, Button, Paper, Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 function LoanCalculator() {
@@ -44,23 +44,45 @@ function LoanCalculator() {
 
 
     return (
-        <div>
-            <h2>Loan Amortization Calculator</h2>
-            <div>
-                <TextField label="Total Loan Amount" type="number" value={loanAmount} onChange={(e) => setLoanAmount(e.target.value)} />
-            </div>
-            <div>
-                <TextField label="Loan Length in Years" type="number" value={loanLength} onChange={(e) => setLoanLength(e.target.value)} />
-            </div>
-            <div>
-                <TextField label="Interest Rate" type="number" value={interestRate} onChange={(e) => setInterestRate(e.target.value)} />
-            </div>
-            <Button variant="contained" onClick={calculateAmortization}>Calculate</Button>
+        <Box p={4}>
+            <h2 style={{ marginBottom: '1.5rem' }}>Loan Amortization Calculator</h2>
+            <Box display="flex" alignItems="center" marginBottom="1rem">
+                <TextField
+                    label="Total Loan Amount"
+                    type="number"
+                    value={loanAmount}
+                    onChange={(e) => setLoanAmount(e.target.value)}
+                    variant="outlined"
+                    fullWidth
+                />
+                <Box width="1rem" />
+                <TextField
+                    label="Loan Length in Years"
+                    type="number"
+                    value={loanLength}
+                    onChange={(e) => setLoanLength(e.target.value)}
+                    variant="outlined"
+                    fullWidth
+                />
+                <Box width="1rem" />
+                <TextField
+                    label="Interest Rate"
+                    type="number"
+                    value={interestRate}
+                    onChange={(e) => setInterestRate(e.target.value)}
+                    variant="outlined"
+                    fullWidth
+                />
+                <Box width="1rem" />
+            </Box>
+            <Button variant="contained" onClick={calculateAmortization} color="primary" fullWidth>
+                Calculate
+            </Button>
 
-            <div style={{ height: 400, width: '100%' }}>
+            <div style={{ height: 400, width: '100%', marginTop: '1.5rem' }}>
                 <DataGrid rows={amortizationDataWithKeys} columns={columns} pageSize={10} />
             </div>
-        </div>
+        </Box>
     );
 }
 
