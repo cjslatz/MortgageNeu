@@ -30,11 +30,43 @@ function LoanCalculator() {
     };
 
     const columns = [
-        { field: 'month', headerName: 'Month', width: 100 },
-        { field: 'remainingBalance', headerName: 'Principal Remaining', width: 200 },
-        { field: 'interestPaid', headerName: 'Interest Paid', width: 150 },
-        { field: 'principalPaid', headerName: 'Principal Paid', width: 150 },
-        { field: 'totalMonthlyPayment', headerName: 'Total Monthly Payment', width: 200 },
+        { field: 'month', headerName: 'Month', flex: 1 },
+        {
+            field: 'remainingBalance',
+            headerName: 'Principal Remaining',
+            flex: 1,
+            valueFormatter: (params) => {
+                return params.value.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 2,
+                });
+            } },
+        {
+            field: 'interestPaid', headerName: 'Interest Paid', flex: 1, valueFormatter: (params) => {
+                return params.value.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 2,
+                });
+            }
+        },
+        {
+            field: 'principalPaid', headerName: 'Principal Paid', flex: 1, valueFormatter: (params) => {
+                return params.value.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 2,
+                });
+            } },
+        {
+            field: 'totalMonthlyPayment', headerName: 'Total Monthly Payment', flex: 1, valueFormatter: (params) => {
+                return params.value.toLocaleString('en-US', {
+                    style: 'currency',
+                    currency: 'USD',
+                    minimumFractionDigits: 2,
+                });
+            } },
     ];
 
     const amortizationDataWithKeys = amortizationData.map(record => ({
@@ -63,6 +95,9 @@ function LoanCalculator() {
                     onChange={(e) => setLoanLength(e.target.value)}
                     variant="outlined"
                     fullWidth
+                    inputProps={{
+                        step: 1, 
+                    }}
                 />
                 <Box width="1rem" />
                 <TextField
@@ -80,7 +115,7 @@ function LoanCalculator() {
             </Button>
 
             <div style={{ height: 400, width: '100%', marginTop: '1.5rem' }}>
-                <DataGrid rows={amortizationDataWithKeys} columns={columns} pageSize={10} />
+                <DataGrid rows={amortizationDataWithKeys} columns={columns} pageSize={10} disableRowSelectionOnClick={true} />
             </div>
         </Box>
     );

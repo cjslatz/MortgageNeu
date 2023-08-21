@@ -50,8 +50,8 @@ namespace MortgageNeu.Controllers
 
         private double CalculateMonthlyPayment(double loanAmount, int loanLengthMonths, double monthlyInterestRate)
         {
-            var top = Math.Pow(1+monthlyInterestRate, loanLengthMonths);
-            var bottom = (Math.Pow(1+monthlyInterestRate, loanLengthMonths) - 1);
+            var top = Math.Pow(1 + monthlyInterestRate, loanLengthMonths);
+            var bottom = (Math.Pow(1 + monthlyInterestRate, loanLengthMonths) - 1);
             var total = loanAmount * monthlyInterestRate * (top/bottom);
 
             return total;
