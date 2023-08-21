@@ -10,15 +10,13 @@ namespace MortgageNeu.Controllers
         {
             // Extract loan details from the request
             double totalLoanAmount = loanDetails.TotalLoanAmount;
-            int loanLengthYears = loanDetails.LoanLengthYears;
+            int loanLengthMonths = loanDetails.LoanLengthMonths;
             double annualInterestRate = loanDetails.InterestRate;
 
             // Perform amortization calculation
             List<AmortizationRecord> amortizationSchedule = new List<AmortizationRecord>();
-            int loanLengthMonths = loanLengthYears * 12;
             double monthlyInterestRate = annualInterestRate;
 
-            // Need to enforce something on the front end to know if this makes sense
             if (annualInterestRate >= 1)
             {
                 monthlyInterestRate = (annualInterestRate / 100) / 12;
@@ -63,7 +61,7 @@ namespace MortgageNeu.Controllers
     public class LoanDetails
     {
         public double TotalLoanAmount { get; set; }
-        public int LoanLengthYears { get; set; }
+        public int LoanLengthMonths { get; set; }
         public double InterestRate { get; set; }
     }
 

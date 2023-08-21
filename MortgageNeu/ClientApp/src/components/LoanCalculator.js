@@ -16,7 +16,7 @@ function LoanCalculator() {
             },
             body: JSON.stringify({
                 TotalLoanAmount: parseFloat(loanAmount),
-                LoanLengthYears: parseInt(loanLength),
+                LoanLengthMonths: parseInt(loanLength),
                 InterestRate: parseFloat(interestRate)
             })
         });
@@ -89,7 +89,7 @@ function LoanCalculator() {
                 />
                 <Box width="1rem" />
                 <TextField
-                    label="Loan Length in Years"
+                    label="Loan Length in Months"
                     type="number"
                     value={loanLength}
                     onChange={(e) => setLoanLength(e.target.value)}
