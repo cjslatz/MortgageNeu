@@ -97,6 +97,7 @@ function LoanCalculator() {
                     fullWidth
                     inputProps={{
                         step: 1, 
+                        min: 1,  
                     }}
                 />
                 <Box width="1rem" />
