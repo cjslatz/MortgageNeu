@@ -46,17 +46,16 @@ namespace MortgageNeu.Controllers
             return Ok(amortizationSchedule);
         }
 
-        private double CalculateMonthlyPayment(double loanAmount, int loanLengthMonths, double monthlyInterestRate)
+        public double CalculateMonthlyPayment(double loanAmount, int loanLengthMonths, double monthlyInterestRate)
         {
             // Split up for readability
             var top = Math.Pow(1 + monthlyInterestRate, loanLengthMonths);
             var bottom = (Math.Pow(1 + monthlyInterestRate, loanLengthMonths) - 1);
-            var total = loanAmount * monthlyInterestRate * (top/bottom);
+            var monthlyPayment = loanAmount * monthlyInterestRate * (top/bottom);
 
-            return total;
+            return monthlyPayment;
         }
     }
-
 
 
     public class LoanDetails

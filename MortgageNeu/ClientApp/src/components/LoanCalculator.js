@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TextField, Button, Paper, Box } from '@mui/material';
+import { TextField, Button, Box } from '@mui/material';
 import { DataGrid } from '@mui/x-data-grid';
 
 function LoanCalculator() {
