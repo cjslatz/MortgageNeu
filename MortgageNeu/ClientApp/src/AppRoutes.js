@@ -1,5 +1,3 @@
-import { Counter } from "./components/Counter";
-import { FetchData } from "./components/FetchData";
 import LoanCalculator from "./components/LoanCalculator";
 
 const AppRoutes = [
